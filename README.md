@@ -1,4 +1,4 @@
-# My New Blog App!
+# My Wordpress Mini Blog App with Node JS!
 
 Hello! I'm an enthusiastic Node.js learner, and I just created my new blog app. This `Readme.md` file serves as documentation for my project. I hope you enjoy it!
 
