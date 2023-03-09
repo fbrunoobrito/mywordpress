@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const categoriesController = require("./categories/categoriesController");
+const articlesController = require("./articles/articlesController");
 
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
@@ -28,6 +30,9 @@ connection
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 app.listen(port, () =>
   console.log(`Servidor Rodando no: http://localhost:${port} `)
