@@ -1,6 +1,32 @@
 <%- include ('partials/homenavbar.ejs') %>
 <%- include ('partials/header.ejs') %>
 <body>
-  <h1>Teste</h1>
+  <hr>
+  <div class="jumbotron m-3 bg-light">
+    <h1 class="display-4">Bem vindos ao MyWordPress</h1>
+    <p class="lead">Um site para apaixonados da tecnologia que querem se informar de tudo que está acontecendo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam odio, error numquam ad atque sequi tempora dolores magni iusto quae maxime aspernatur dignissimos consequatur pariatur? Mollitia suscipit accusamus cum reprehenderit.</p>
+    <hr class="my-4">
+    <p>Curiosidades do mundo "Tech" e muito mais Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nam, nisi quaerat at, vel porro qui cum nulla perspiciatis iusto ad sequi voluptas ullam voluptatum animi deleniti eos maxime doloremque?</p>
+    <a class="btn btn-dark btn-lg" href="#" role="button">Veja Mais</a>
+  </div>
+  <div class="container">
+    <br>
+    <% articles.forEach(article => { %>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3><%= article.title %></h3>
+        </div>
+
+        <div class="card-body">
+            <p style="overflow: hidden; max-height: calc(1.2em * 4); line-height: 1.2em;"><%= article.body %></p>
+        </div>
+        <div class="card-footer">
+            <a href="/article/<%= article.slug %>" class="btn btn-dark">Ver Artigo</a>
+        </div>
+      </div>
+      <br>
+    <% }) %>
+  </div>
 </body>
 <%- include ('partials/footer.ejs') %>
