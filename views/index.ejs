@@ -17,12 +17,8 @@
         <div class="card-header">
           <h3><%= article.title %></h3>
         </div>
-
-        <div class="card-body">
-            <p style="overflow: hidden; max-height: calc(1.2em * 4); line-height: 1.2em;"><%= article.body %></p>
-        </div>
-        <div class="card-footer">
-            <a href="/article/<%= article.slug %>" class="btn btn-dark">Ver Artigo</a>
+        <div class="card-body d-flex justify-content-end">
+            <a href="<%= article.slug %>" class="btn btn-dark">Ver Artigo</a>
         </div>
       </div>
       <br>
