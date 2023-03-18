@@ -36,9 +36,27 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/:slug", (req, res) => {
+  const slug = req.params.slug;
+
+  Article.findOne({
+    where: { slug },
+  })
+    .then((article) => {
+      if (slug == article.slug) {
+        res.render("article", { article });
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch((error) => {
+      res.redirect("/");
+    });
+});
+
 app.use("/", categoriesController);
 app.use("/", articlesController);
 
-app.listen(port, () =>
-  console.log(`Servidor Rodando no: http://localhost:${port} `)
-);
+app.listen(port, () => {
+  console.log(`Servidor Rodando no: http://localhost:${port}`);
+});
