@@ -31,8 +31,12 @@ connection
   });
 
 app.get("/", (req, res) => {
-  Article.findAll().then((articles) => {
-    res.render("index", { articles });
+  Article.findAll({
+    order: [["id", "DESC"]],
+  }).then((articles) => {
+    Category.findAll().then((categories) => {
+      res.render("index", { articles, categories });
+    });
   });
 });
 
@@ -43,8 +47,10 @@ app.get("/:slug", (req, res) => {
     where: { slug },
   })
     .then((article) => {
-      if (slug == article.slug) {
-        res.render("article", { article });
+      if (article != undefined) {
+        Category.findAll().then((categories) => {
+          res.render("article", { article, categories });
+        });
       } else {
         res.redirect("/");
       }
