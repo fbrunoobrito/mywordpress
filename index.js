@@ -3,9 +3,11 @@ const app = express();
 const port = 8080;
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
@@ -29,6 +31,10 @@ connection
   .catch((error) => {
     console.log(error);
   });
+
+app.use("/", categoriesController);
+app.use("/", articlesController);
+app.use("/", usersController);
 
 app.get("/", (req, res) => {
   Article.findAll({
@@ -80,9 +86,6 @@ app.get("/category/:slug", (req, res) => {
       res.redirect("/");
     });
 });
-
-app.use("/", categoriesController);
-app.use("/", articlesController);
 
 app.listen(port, () => {
   console.log(`Servidor Rodando no: http://localhost:${port}`);
