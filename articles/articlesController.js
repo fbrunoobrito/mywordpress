@@ -124,15 +124,16 @@ router.get("/articles/page/:num", (req, res) => {
       next = true;
     }
 
-    var haveNext = {
-      next,
-      articles,
+    var result = {
+      page: parseInt(page),
+      next: next,
+      articles: articles,
     };
 
     Category.findAll().then((categories) => {
       res.render("admin/articles/page", {
-        haveNext: haveNext.articles,
-        categories,
+        result: result,
+        categories: categories,
       });
     });
   });
